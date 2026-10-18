@@ -24,15 +24,16 @@
       align-items: center;
     }
     .page {
-      background: white;
+      /* Dark background so no white bars leak through */
+      background: #111;
       width: 100%;
       height: 100%;
-      box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     }
     .page img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      /* Fills the container completely while preserving aspect ratio */
+      object-fit: cover;
       user-select: none;
     }
   </style>
@@ -44,12 +45,11 @@
 </div>
 
 <script>
-  // Set total images count (0 to 139 = 140 images)
   const totalPages = 140; 
 
   const pageFlip = new St.PageFlip(document.getElementById('book'), {
-    width: 550,
-    height: 733,
+    width: 500,        // Narrower aspect ratio to fit standard page dimensions
+    height: 700,
     size: "stretch",
     minWidth: 315,
     maxWidth: 1000,
@@ -66,9 +66,6 @@
     div.className = 'page';
     
     const img = document.createElement('img');
-    
-    // Matches your file path and naming pattern: pages/Ornate 26-images-0.jpg to 139.jpg
-    // Note: If your image extensions are .png instead of .jpg, change '.jpg' to '.png' below
     img.src = `pages/Ornate 26-images-${i}.jpg`; 
     img.alt = `Page ${i + 1}`;
     
