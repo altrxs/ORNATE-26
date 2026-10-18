@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flipbook Viewer</title>
+  <title>ORNATE-26 Flipbook</title>
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
   <style>
     body {
       margin: 0;
-      background: #222;
+      background: #111;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       overflow: hidden;
+      font-family: Arial, sans-serif;
     }
     #container {
-      width: 90vw;
+      width: 95vw;
       height: 90vh;
       display: flex;
       justify-content: center;
@@ -26,11 +27,13 @@
       background: white;
       width: 100%;
       height: 100%;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     }
     .page img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      user-select: none;
     }
   </style>
 </head>
@@ -41,7 +44,8 @@
 </div>
 
 <script>
-  const totalPages = 150; // Change this if your page count differs
+  // Set total images count (0 to 139 = 140 images)
+  const totalPages = 140; 
 
   const pageFlip = new St.PageFlip(document.getElementById('book'), {
     width: 550,
@@ -57,16 +61,16 @@
 
   const pageElements = [];
 
-  for (let i = 1; i <= totalPages; i++) {
+  for (let i = 0; i < totalPages; i++) {
     const div = document.createElement('div');
     div.className = 'page';
     
-    // Formats numbers as '001', '012', '150'
-    const pageNum = String(i).padStart(3, '0'); 
-    
     const img = document.createElement('img');
-    img.src = `pages/page-${pageNum}.png`; // Ensure extension matches your file type (.png or .jpg)
-    img.alt = `Page ${i}`;
+    
+    // Matches your file path and naming pattern: pages/Ornate 26-images-0.jpg to 139.jpg
+    // Note: If your image extensions are .png instead of .jpg, change '.jpg' to '.png' below
+    img.src = `pages/Ornate 26-images-${i}.jpg`; 
+    img.alt = `Page ${i + 1}`;
     
     div.appendChild(img);
     pageElements.push(div);
